@@ -43,16 +43,25 @@ class Timer {
     clearInterval(this.interval);
   }
   tick = () => {
-    const timeRemaining = parseFloat(this.durationInput.value);
-    this.durationInput.value = timeRemaining - 1;
+    //const timeRemaining = parseFloat(this.durationInput.value);
+    //Using get method we can point it faster
+    //const timeRemaining = this.timeRemaining;
+    this.timeRemaining = this.timeRemaining - 1;
   };
+  //get = instance var maker
+  get timeRemaining(){
+  return  parseFloat(this.durationInput.value);
+  }
+  set timeRemaining(time){
+    this.durationInput.value= time;
+  }
   //helper methods
-  getTime() {
-    return  parseFloat(this.durationInput.value);
-  }
-  setTime(time) {
-    this.durationInput.value = time;
-  }
+  // getTime() {
+  //   return  parseFloat(this.durationInput.value);
+  // }
+  // setTime(time) {
+  //   this.durationInput.value = time;
+  // }
 }
 const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector('#start');
