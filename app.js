@@ -46,9 +46,14 @@ class Timer {
     const timeRemaining = parseFloat(this.durationInput.value);
     this.durationInput.value = timeRemaining - 1;
   };
-
+  //helper methods
+  getTime() {
+    return  parseFloat(this.durationInput.value);
+  }
+  setTime(time) {
+    this.durationInput.value = time;
+  }
 }
-
 const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector('#start');
 const pauseButton = document.querySelector('#pause');
