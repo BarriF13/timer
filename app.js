@@ -5,15 +5,19 @@ class Timer{
     this.pauseButton = pauseButton;
    
     //to make sure start runs each time we click the start button we make an event listener here 
-    this.startButton.addEventListener('click', this.start)
+    //this.startButton.addEventListener('click', this.start);
+    this.startButton.addEventListener('click', this.startBind.bind(this))
   }
-  start=()=>{
+  startBind(){
+    console.log('I am using bind');
+  }
+  start = ()=>{
    // console.log(this);
     console.log('Time to start the timer');
     this.importantMeth();
   }
   importantMeth(){
-console.log('bla');
+    console.log('bla');
   }
 }
 
