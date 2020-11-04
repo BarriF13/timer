@@ -31,6 +31,7 @@ class Timer {
     if(callbacks){
       this.onStart = callbacks.onStart;
       this.onTick = callbacks.onTick;
+      this.onComplete = callbacks.onComplete;
     }
     //to make sure start runs each time we click the start button we make an event listener here 
     this.startButton.addEventListener('click', this.start);
@@ -47,15 +48,23 @@ class Timer {
   };
   pause = () => {
     clearInterval(this.interval);
+
   }
   tick = () => {
     //const timeRemaining = parseFloat(this.durationInput.value);
     //Using get method we can point it faster
     //const timeRemaining = this.timeRemaining;
     if (this.timeRemaining <= 0) {
-      return this.pause;
+       this.pause();
+      if(this.onComplete){
+        this.onComplete();
+      }
     } else {
+
       this.timeRemaining = this.timeRemaining - 1;
+      if(this.onTick){
+        this.onTick();
+      }
     }
 
   };
@@ -80,13 +89,13 @@ const pauseButton = document.querySelector('#pause');
 
 const timer = new Timer(durationInput, startButton, pauseButton, {
   onStart() {
-    console.log('timer started');
+    console.log('Timer started');
   },
   onTick() {
-
+    console.log('Timer just ticked down');
   },
   onComplete() {
-
+    console.log('Timer is completed');
   }
 });
 //timer.start();
